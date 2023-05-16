@@ -1,0 +1,154 @@
+(defwidget bar []
+  (centerbox
+    :class "barInvisible"
+    :orientation "h"
+    (workspaces)
+    (emptyName)
+    (sidestuff)
+  )
+)
+
+(defwidget sidestuff []
+  (box
+    :class "sidestuff"
+    :orientation "h"
+    :space-evenly false
+    :halign "end"
+    {"${brightness}% "
+      + "${(brightness <= 100 && brightness >= 85) ? '' : ''}"
+      + "${(brightness < 85 && brightness >= 75) ? '' : ''}"
+      + "${(brightness < 75 && brightness >= 65) ? '' : ''}"
+      + "${(brightness < 65 && brightness >= 55) ? '' : ''}"
+      + "${(brightness < 55 && brightness >= 45) ? '' : ''}"
+      + "${(brightness < 45 && brightness >= 35) ? '' : ''}"
+      + "${(brightness < 35 && brightness >= 25) ? '' : ''}"
+      + "${(brightness < 25 && brightness >= 15) ? '' : ''}"
+      + "${(brightness < 15 && brightness >= 0) ? '' : ''}  "
+    }
+    (box
+      :class {"${(EWW_BATTERY.BAT0.capacity >= 40) ? 'batteryHigh' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 40 && EWW_BATTERY.BAT0.capacity >= 20) ? 'batteryMedium' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 20) ? 'batteryLow' : ''}   "
+      }
+      {"${EWW_BATTERY.BAT0.capacity}% "
+        + "${(EWW_BATTERY.BAT0.capacity <= 100 && EWW_BATTERY.BAT0.capacity >= 80) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 80 && EWW_BATTERY.BAT0.capacity >= 60) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 60 && EWW_BATTERY.BAT0.capacity >= 40) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 40 && EWW_BATTERY.BAT0.capacity >= 20) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.capacity < 20 && EWW_BATTERY.BAT0.capacity >= 0) ? '' : ''}   "
+      }
+    )
+    time
+  )
+)
+
+(defvar workspaceNumbers "[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]")
+(defvar workspaceVisibility "[true, true, true, true, true, true, true, true, true, true]")
+(defvar workspaceNames '["十","一","二","三","四","五","六","七","八","九"]')
+(defvar activeworkspace 1)
+(defvar brightness 100)
+
+(defwidget workspaces []
+  (box
+    :class "workspaces"
+    :orientation "h"
+    :space-evenly false
+    :halign "start"
+    (for number in workspaceNumbers
+      (revealer
+        :reveal {workspaceVisibility[number]}
+        :transition "slideright"
+        :duration "0ms"
+        (button
+          :class {activeworkspace == number ? "active" : "inactive"}
+          :onclick "ChangeWorkspace ${number}" {workspaceNames[number]}
+        )
+      )
+    )
+  )
+)
+
+(defwidget emptyName []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    :class "barInvisible"
+  )
+)
+
+(defwidget backbar []
+  (box
+    :orientation "h"
+    :space-evenly false
+    :class "barVisible"
+  )
+)
+
+(defvar focusedname "desktop")
+
+(defwidget windowname []
+  (box
+    :class "focusedName"
+    :orientation "h"
+    :space-evenly false
+    :halign "center"
+    {(focusedname != "desktop") ? focusedname : ""}
+  )
+)
+
+(defpoll time
+  :interval "1s"
+  "date '+%d-%m-%Y  %H:%M:%S'"
+)
+
+(defwindow spacebar
+  :monitor 0
+  :windowtype "dock"
+  :geometry
+  (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "35px"
+    :anchor "top center"
+  )
+  (emptyName)
+)
+
+(defwindow backbar
+  :monitor 0
+  :wm-ignore true
+  :stacking "bg"
+  :windowtype "dock"
+  :geometry
+  (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "35px"
+    :anchor "top center"
+  )
+  (backbar)
+)
+
+(defwindow bar
+  :monitor 0
+  :wm-ignore true
+  :stacking "fg"
+  :windowtype "dock"
+  :geometry
+  (geometry
+    :x "0%"
+    :y "0%"
+    :width "100%"
+    :height "35px"
+    :anchor "top center"
+  )
+  :reserve
+  (struts
+    :side "top"
+    :distance "4%"
+  )
+  (bar)
+)

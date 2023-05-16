@@ -1,0 +1,206 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+window#waybar {
+    /* background-color: rgba(30, 30, 46, 0.6); */
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #cdd6f4;
+    transition-property: background-color;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+
+window#waybar.empty {
+    background-color: transparent;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -3px transparent;
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button {
+    background-color: transparent;
+    border-radius: 6px;
+    color: #cdd6f4;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    min-width: 0;
+}
+
+#workspaces button:hover {
+    background-color: #1e1e2e;
+    /* background: rgba(17, 17, 29, 0.6); */
+}
+
+#workspaces button.focused {
+    /* background: rgba(17, 17, 29, 1); */
+    background-color: #1e1e2e;
+    color: #74c7ec;
+    box-shadow: inset 0 -3px #74c7ec;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    padding: 0 7px;
+    background-color: #1e1e2e;
+    /* background: rgba(17, 17, 29, 1); */
+    border-radius: 4px;
+    color: #74c7ec;
+    border-bottom: 3px solid #74c7ec;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#clock,
+#battery,
+#backlight,
+#pulseaudio,
+#tray{
+    padding: 0 10px;
+    color: #cdd6f4;
+    background-color: #1e1e2e;
+    /* background: rgba(17, 17, 29, 1); */
+    border-radius: 10px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#window {
+    padding: 0 15px;
+    padding-top: 1px;
+    color: #cdd6f4;
+    background-color: #1e1e2e;
+    /* background: rgba(17, 17, 29, 1); */
+    border-radius: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+
+#waybar.empty * #window {
+    background-color: transparent;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 8;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    margin-right: 8px;
+}
+
+#battery {
+    padding-top: 0px;
+}
+
+#battery.charging, #battery.plugged {
+    color: #a6e3a1;
+}
+
+#battery.good {
+    color: #a6e3a1;
+}
+
+#battery.warning:not(.charging) {
+    color: #f9e2af;
+}
+
+@keyframes blink {
+    to {
+        color: #f38ba8;
+        color: #cdd6f4;
+    }
+}
+
+#battery.critical:not(.charging) {
+    color: #f38ba8;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#backlight {
+    padding-top: 1px;
+}
+
+#backlight.high {
+    color: #f38ba8;
+}
+
+#backlight.middle {
+    color: #74c7ec;
+}
+
+#backlight.low {
+    color: #a6e3a1;
+}
+
+#pulseaudio {
+    color: #cdd6f4;
+}
+
+#pulseaudio.loud {
+    color: #f38ba8;
+}
+
+#pulseaudio.middle {
+    color: #74c7ec;
+}
+
+#pulseaudio.muted, #pulseaudio.quiet {
+    color: #a6e3a1;
+}
+
+#custom-media {
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#tray {
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #f38ba8;
+}

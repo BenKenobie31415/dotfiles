@@ -1,0 +1,102 @@
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 40, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 8, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+    "modules-center": ["sway/window"],
+    "modules-right": ["tray", "pulseaudio", "backlight", "battery", "clock"],
+    // Modules configuration
+    // "sway/workspaces": {
+    //     "disable-scroll": true,
+    //     "all-outputs": true,
+    //     "format": "{name}: {icon}",
+    //     "format-icons": {
+    //         "1": "",
+    //         "2": "",
+    //         "3": "",
+    //         "4": "",
+    //         "5": "",
+    //         "urgent": "",
+    //         "focused": "",
+    //         "default": ""
+    //     }
+    // },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "icon-size": 17,
+        "spacing": 10
+    },
+    "clock": {
+        "timezone": "Europe/Berlin",
+        //"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M    %d.%m.%Y}"
+        //"format": "{:%M.%H.%d.%m.%Y}"
+        //"format": "{:%H:%M}"
+        //"format-alt": "{:%H:%M    %d.%m.%Y}"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "states": {
+            "high": 76,
+            "middle": 25,
+            "low": 0
+        },
+        "format": "<span font='13' rise='0'>{percent}%</span> <span font='15' rise='-500'>{icon}</span>",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "battery": {
+        "states": {
+            "good": 100,
+            "warning": 35,
+            "critical": 15
+        },
+        "format": "<span font='13' rise='0'>{capacity}%</span> <span font='21' rise='-3000'>{icon}</span>",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "states": {
+            "loud": 75,
+            "middle": 25,
+            "quiet": 0
+        },
+        "format": "<span font='13' rise='-1400'>{volume}%</span> <span rise='-500'>{icon}</span> <span rise='0'>{format_source}</span>",
+        "format-bluetooth": "<span font='13' rise='-1400'>{volume}%</span> <span rise='-500'>{icon}</span>  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            /* "hands-free": "",
+            "headset": "", */
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}
+
