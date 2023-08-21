@@ -1,0 +1,115 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+  font-family: "FiraCode NerdFont";
+  font-size: 16px;
+}
+
+//Global Styles
+.bar_main {
+  color: #b0b4bc;
+  padding: 10px;
+}
+.bar_side {
+  color: #b0b4bc;
+  padding: 10px;
+}
+
+.darkbar_main {
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+.darkbar_side {
+  background-color: rgba($color: #000000, $alpha: 0.6);
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.sidestuff {
+  all: unset;
+  color: #cdd6f4;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #11111b;
+  border-radius: 10;
+  margin: 2px;
+}
+
+.batteryHigh {
+  color: #a6e3a1;
+}
+
+.batteryMedium {
+  color: #f9e2af;
+}
+
+.batteryLow {
+  color: #f38ba8;
+}
+
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.metric scale trough highlight {
+  all: unset;
+  background-color: #D35D6E;
+  color: #000000;
+  border-radius: 10px;
+}
+.metric scale trough {
+  all: unset;
+  background-color: #4e4e4e;
+  border-radius: 50px;
+  min-height: 3px;
+  min-width: 50px;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+.workspaces button {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  border-radius: 4px;
+}
+.workspaces button:hover {
+  color: #D35D6E;
+}
+.workspaces {
+  background-color: #11111b;
+  border-radius: 10;
+  margin: 2px;
+}
+.active {
+  color: #74c7ec;
+  font-weight: bolder;
+}
+.inactive {
+  color: #cdd6f4;
+  font-weight: bold;
+}
+
+.focusedNameVisible {
+  color: #cdd6f4;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #11111b;
+  border-radius: 10;
+  margin: 2px;
+}
