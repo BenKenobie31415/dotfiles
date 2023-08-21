@@ -1,0 +1,26 @@
+--- x_original.c	2023-07-28 13:42:28.739664678 +0200
++++ x.c	2023-07-28 15:07:16.443292775 +0200
+@@ -1507,13 +1507,7 @@
+ 		fg = &revfg;
+ 	}
+ 
+-	if (base.mode & ATTR_REVERSE) {
+-		temp = fg;
+-		fg = bg;
+-		bg = temp;
+-	}
+-
+-	if (base.mode & ATTR_SELECTED) {
++	if (base.mode & (ATTR_SELECTED | ATTR_REVERSE)) {
+ 		bg = &dc.col[selectionbg];
+ 		if (!ignoreselfg)
+ 			fg = &dc.col[selectionfg];
+@@ -1605,7 +1599,7 @@
+ 		g.bg = defaultfg;
+ 		drawcol = dc.col[defaultrcs];
+ 	} else {
+-		g.fg = defaultbg;
++		g.fg = selectionbg;
+ 		g.bg = defaultcs;
+ 		drawcol = dc.col[defaultcs];
+ 	}
