@@ -77,14 +77,17 @@
     (box
       :class {"${(EWW_BATTERY.BAT0.capacity >= 40) ? 'batteryHigh' : ''}"
         + "${(EWW_BATTERY.BAT0.capacity < 40 && EWW_BATTERY.BAT0.capacity >= 20) ? 'batteryMedium' : ''}"
-        + "${(EWW_BATTERY.BAT0.capacity < 20) ? 'batteryLow' : ''}   "
+        + "${(EWW_BATTERY.BAT0.capacity < 20) ? 'batteryLow' : ''}"
+		+ "${(EWW_BATTERY.BAT0.status == 'Charging') ? 'Charging' : ''}"
       }
       {"${EWW_BATTERY.BAT0.capacity}% "
-        + "${(EWW_BATTERY.BAT0.capacity <= 100 && EWW_BATTERY.BAT0.capacity >= 80) ? '' : ''}"
-        + "${(EWW_BATTERY.BAT0.capacity < 80 && EWW_BATTERY.BAT0.capacity >= 60) ? '' : ''}"
-        + "${(EWW_BATTERY.BAT0.capacity < 60 && EWW_BATTERY.BAT0.capacity >= 40) ? '' : ''}"
-        + "${(EWW_BATTERY.BAT0.capacity < 40 && EWW_BATTERY.BAT0.capacity >= 20) ? '' : ''}"
-        + "${(EWW_BATTERY.BAT0.capacity < 20 && EWW_BATTERY.BAT0.capacity >= 0) ? '' : ''}   "
+        + "${(EWW_BATTERY.BAT0.status == 'Discharging' && EWW_BATTERY.BAT0.capacity <= 100 && EWW_BATTERY.BAT0.capacity >= 80) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.status == 'Discharging' && EWW_BATTERY.BAT0.capacity < 80 && EWW_BATTERY.BAT0.capacity >= 60) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.status == 'Discharging' && EWW_BATTERY.BAT0.capacity < 60 && EWW_BATTERY.BAT0.capacity >= 40) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.status == 'Discharging' && EWW_BATTERY.BAT0.capacity < 40 && EWW_BATTERY.BAT0.capacity >= 20) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.status == 'Discharging' && EWW_BATTERY.BAT0.capacity < 20 && EWW_BATTERY.BAT0.capacity >= 0) ? '' : ''}"
+        + "${(EWW_BATTERY.BAT0.status == 'Charging') ? '󱐋' : ''}"
+		+ "  "
       }
     )
     (button
