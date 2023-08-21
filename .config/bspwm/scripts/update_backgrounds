@@ -1,0 +1,5 @@
+#!/bin/sh
+git -C /home/benkenobi/Pictures/BackgroundImages pull
+python /home/benkenobi/.config/bspwm/scripts/generate_blurred_backgrounds.py &
+python /home/benkenobi/.config/bspwm/scripts/load_background.py
+
