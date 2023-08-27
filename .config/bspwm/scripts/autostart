@@ -1,9 +1,10 @@
 #!/bin/sh
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+INTERNAL_MONITOR="eDP1"
+EXTERNAL_MONITOR="HDMI2"
 
-python /home/benkenobi/.config/bspwm/scripts/kill_scripts_on_startup.py
+/home/benkenobi/.config/bspwm/scripts/update_monitors.py
 
-#Picom
+#Picom (seems to create second bspwm monitor when running with external?)
 killall picom
 picom -b --no-fading-openclose
 #picom -b --no-fading-openclose --inactive-dim 0.3333
@@ -12,26 +13,29 @@ picom -b --no-fading-openclose
 killall eww
 eww daemon &
 #bar-scripts
-INTERNAL_MONITOR="eDP1"
-EXTERNAL_MONITOR="HDMI2"
+killall python
 if [[ $(xrandr -q | grep "${EXTERNAL_MONITOR} connected") ]]; then
+	echo "detected dual-monitor"
 	eww open bar_main &
 	eww open bar_side &
 	eww open darkbar_main &
 	eww open darkbar_side &
 else
+	echo "detected single-monitor"
 	eww open bar_main &
 	eww open darkbar_main &
 fi
+
 python /home/benkenobi/.config/bspwm/scripts/handle_eww_bar.py &
 #update brightness
 /home/benkenobi/.config/bspwm/scripts/ChangeBrightness increase 0
 python /home/benkenobi/.config/bspwm/scripts/handle_focus.py &
 
 #Background
-/home/benkenobi/.config/bspwm/scripts/update_backgrounds &
+python /home/benkenobi/.config/bspwm/scripts/load_background.py
 
 #lock-screen
+killall xss-lock
 xset s 600
-xss-lock -- /home/benkenobi/.config/bspwm/scripts/lock_script
+xss-lock -- /home/benkenobi/.config/bspwm/scripts/lock_script &
 

@@ -19,13 +19,15 @@ EXTERNAL_MONITOR="HDMI2"
 if [[ "$1" = 0 ]]; then
     /home/benkenobi/.config/bspwm/scripts/autostart &
 
-
 	if [[ $(xrandr -q | grep "${EXTERNAL_MONITOR} connected") ]]; then
+		echo "configuring double-monitor"
 		bspc monitor "$INTERNAL_MONITOR" -d 6 7 8 9 0
 		bspc monitor "$EXTERNAL_MONITOR" -d 1 2 3 4 5
 		xrandr --output "$INTERNAL_MONITOR" --mode 1920x1080 --pos 0x0 --rotate normal --output "$EXTERNAL_MONITOR" --primary --mode 1920x1080 --pos 1920x0 --rotate normal
-    else
+	else
+		echo "configuring single-monitor"
 		bspc monitor "$INTERNAL_MONITOR" -d 1 2 3 4 5 6 7 8 9 0
-    fi
+		xrandr --output "$INTERNAL_MONITOR" --primary --mode 1920x1080 --pos 0x0 --rotate normal 
+	fi
 fi
 
