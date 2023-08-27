@@ -55,8 +55,8 @@ alt + shift + q
 ######### state/flags
 
 # set the window state
-alt + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+#alt + {t,shift + t,s,f}
+	#bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 alt + ctrl + {m,x,y,z}
