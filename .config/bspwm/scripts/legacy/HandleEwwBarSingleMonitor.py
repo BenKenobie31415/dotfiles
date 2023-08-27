@@ -87,14 +87,14 @@ def init_eww_locked() -> None:
 
 def update_desktop_visibility() -> None:
     potential_names = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-    desktop_ids = bspc.get_desktop_ids()
+    desktop_ids = bspc.get_desktops()
     desktop_names = get_desktop_names()
     name_id_dict = {bspc.get_desktop_name(id):id for id in desktop_ids}
     desktop_visibility = [(name in desktop_names and (is_desktop_occupied(name_id_dict[name]) or bspc.get_focused_desktop() == name_id_dict[name])) for name in potential_names]
     update_eww_var("workspaceVisibility", "\"" + str(desktop_visibility).lower() + "\"")
 
 def get_desktop_names() -> list[str]:
-    return [bspc.get_desktop_name(id) for id in bspc.get_desktop_ids()]
+    return [bspc.get_desktop_name(id) for id in bspc.get_desktops()]
 
 def is_desktop_occupied(desktop_id: str) -> bool:
     return len(bspc.get_node_ids(desktop_id, excluded=ignored_node_ids)) > 0

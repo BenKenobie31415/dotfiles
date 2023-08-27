@@ -44,6 +44,7 @@ def main():
     while not eww_bar_util.are_eww_windows_present(eww_window_names):
         time.sleep(0.5)
         print("waiting for eww windows")
+    print("found eww windows")
     #caches ids that should be ignored for determining if a desktop is occupied
     eww_window_ids = [bspc.get_first_window_with_name(name) for name in eww_window_names]
     #caches the id of the two bar-windows for each monitor
@@ -137,7 +138,7 @@ def lock_eww_bar() -> None:
 
 def update_desktop_visibility() -> None:
     visible_desktops = bspc.get_occupied_desktop_ids()
-    desktop_ids = bspc.get_desktop_ids()
+    desktop_ids = bspc.get_desktops()
     desktop_ids.sort(key=lambda x: bspc.get_desktop_name(x))
     desktop_visibility = [desktop_id in visible_desktops for desktop_id in desktop_ids]
 

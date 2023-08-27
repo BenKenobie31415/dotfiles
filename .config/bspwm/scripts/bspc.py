@@ -101,8 +101,8 @@ def get_monitor_id(port: str) -> str:
     return ids[0]
 
 #Desktop querys
-def get_desktop_ids(monitor_id: str=None) -> list[str]:
-    return query(Queryables.DESKTOP, monitor_descriptor=monitor_id)
+def get_desktops(monitor_id: str=None, query_names: bool=False) -> list[str]:
+    return query(Queryables.DESKTOP, monitor_descriptor=monitor_id, query_names=query_names)
 
 def get_focused_desktop() -> str:
     return query(Queryables.DESKTOP, desktop_modifiers=[DesktopMods.FOCUSED])[0]
@@ -129,7 +129,7 @@ def get_active_desktop(monitor_id: str) -> str:
     return None
 
 def get_desktop_of_node(node_id: str) -> str:
-    for desktop_id in get_desktop_ids():
+    for desktop_id in get_desktops():
         if node_id in get_node_ids(desktop_id):
             return desktop_id
     return None
@@ -185,7 +185,7 @@ def get_first_window_with_name(window_name: str, desktop_id: str = None) -> str:
     if desktop_id:
         desktop_ids = [desktop_id]
     else:
-        desktop_ids = get_desktop_ids()
+        desktop_ids = get_desktops()
     for desktop_id in desktop_ids:
         window_ids = get_window_ids(desktop_id)
         for window_id in window_ids:
@@ -196,7 +196,7 @@ def get_first_window_with_name(window_name: str, desktop_id: str = None) -> str:
 def get_monitor_of_desktop(desktop_id: str) -> str:
     monitor_ids = get_monitor_ids()
     for monitor_id in monitor_ids:
-        if desktop_id in get_desktop_ids(monitor_id):
+        if desktop_id in get_desktops(monitor_id):
             return monitor_id
     return None
 
@@ -224,6 +224,15 @@ def focus_next_free_desktop() -> None:
 
 def rename_desktop(name: str, desktop_id: str) -> None:
     bspc("desktop", desktop_id, "-n", name)
+
+def remove_desktop(desktop: str) -> None:
+    bspc("desktop", desktop, "--remove")
+
+def move_desktop(desktop: str, monitor: str) -> None:
+    bspc("desktop", desktop, "--to-monitor", monitor)
+
+def remove_monitor(monitor_port: str) -> None:
+    bspc("monitor", monitor_port, "-r")
 
 def set_node_flag(node_id: str, flag: str, value: str, desktop_id: str) -> None:
     if not node_id or not desktop_id:

@@ -19,7 +19,7 @@ def get_cropped_node_name(node_id: str, ignored_names: list[str]) -> str:
     return name[0:61] + "..."
 
 def window_exists(window_name: str) -> bool:
-    desktop_ids = bspc.get_desktop_ids()
+    desktop_ids = bspc.get_desktops()
     for desktop_id in desktop_ids:
         if window_name in bspc.get_window_names(desktop_id):
             return True
