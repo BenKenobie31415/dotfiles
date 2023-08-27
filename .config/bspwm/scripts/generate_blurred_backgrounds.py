@@ -14,6 +14,10 @@ def main() -> None:
     write_background_cache()
     added = [new_bg for new_bg in new_bgs if new_bg not in old_bgs or new_bg not in blrd_bgs]
     removed = [old_bg for old_bg in old_bgs if old_bg not in new_bgs]
+    removed += [blrd_bg for blrd_bg in blrd_bgs if blrd_bg not in new_bgs and blrd_bg not in removed]
+    if len(removed) == 0 and len(added) == 0:
+        print("Blurred versions up to date")
+        return
     remove_blurred_bgs(removed)
     generate_blurred_bg(added)
 
@@ -31,10 +35,12 @@ def read_directory(folder: str) -> list[str]:
 
 def remove_blurred_bgs(bgs: list[str]) -> None:
     for bg in bgs:
+        print(f"Removing {bg_blurred_folder_path}{bg}")
         os.popen(f"rm {bg_blurred_folder_path}{bg}")
 
 def generate_blurred_bg(bgs: list[str]) -> None:
     for bg in bgs:
+        print(f"Generating {bg_blurred_folder_path}{bg}")
         os.system(f"convert {bg_folder_path}{bg} -resize 3000x1080 -filter Gaussian -blur 0x12 {bg_blurred_folder_path}{bg}")
         os.system(f"convert {bg_blurred_folder_path}{bg} -draw \"roundrectangle 150,880 350,990 10,10\" -fill \#11111b {bg_blurred_folder_path+bg}")
 
