@@ -93,7 +93,7 @@
     (button
 	  ;;setting timeout to near-infinite value
 	  :timeout "10000000ms"
-      :onclick "networkmanager_dmenu" '${EWW_NETWORK + " "}'
+      :onclick "networkmanager_dmenu" '${EWW_NETWORK}'
     )
     time
   )
