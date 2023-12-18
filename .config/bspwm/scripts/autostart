@@ -1,0 +1,25 @@
+#!/bin/sh
+#Picom (seems to create second bspwm monitor when running with external?)
+killall picom
+picom -b --no-fading-openclose
+
+#Status bars
+killall eww
+eww daemon &
+#bar-scripts
+killall python
+#start eww-bar
+eww open bar_main &
+eww open darkbar_main &
+
+python /home/benkenobi/.config/bspwm/scripts/handle_eww_bar.py &
+
+#python /home/benkenobi/.config/bspwm/scripts/handle_focus.py &
+
+python /home/benkenobi/.config/bspwm/scripts/load_background.py
+
+#lock-screen
+killall xss-lock
+xset s 600
+xss-lock -- /home/benkenobi/.config/bspwm/scripts/lock_script &
+

@@ -1,0 +1,119 @@
+* {
+    bg-col:  #1e1e2e;
+    bg-col-light: #313244;
+    border-col: #11111b;
+	border-col: @blue;
+    selected-col: #11111b;
+    blue: #74c7ec;
+    fg-col: #cdd6f4;
+    fg-col2: @blue;
+    grey: #6c7086;
+
+    font: "FiraCode Nerd Font Mono 28";
+}
+
+element-text, element-icon , mode-switcher {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+window {
+    height: 720px;
+    width: 1200px;
+    border: 0px;
+    border-radius: 12px;
+    border-color: @border-col;
+    background-color: @bg-col;
+}
+
+mainbox {
+    background-color: @bg-col;
+}
+
+inputbar {
+    children: [prompt,entry];
+    background-color: @bg-col;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+prompt {
+    background-color: @blue;
+    padding: 12px;
+    text-color: @bg-col;
+    border-radius: 6px;
+    margin: 40px 0px 0px 40px;
+}
+
+entry {
+    padding: 12px;
+    margin: 40px 40px 0px 20px;
+    border-radius: 12px;
+    text-color: @fg-col;
+    background-color: @bg-col;
+}
+
+listview {
+    border: 0px 0px 0px;
+    padding: 12px 0px 0px;
+    margin: 20px 40px 0px 40px;
+    columns: 1;
+    lines: 10;
+    background-color: @bg-col;
+}
+
+element {
+    padding: 10px;
+    background-color: @bg-col;
+    text-color: @fg-col  ;
+}
+
+element-icon {
+    size: 50px;
+}
+
+element selected {
+    background-color:  @selected-col ;
+    text-color: @fg-col2;
+    border-radius: 10px;
+}
+
+mode-switcher {
+    spacing: 0;
+  }
+
+button {
+    padding: 20px;
+    background-color: @bg-col-light;
+    text-color: @grey;
+    vertical-align: 0.5; 
+    horizontal-align: 0.5;
+}
+
+button selected {
+  background-color: @bg-col;
+  text-color: @blue;
+}
+
+message {
+    background-color: @bg-col-light;
+    margin: 4px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+textbox {
+    padding: 12px;
+    margin: 40px 0px 0px 40px;
+    text-color: @blue;
+    background-color: @bg-col-light;
+}
+
+wrapper-mode-switcher {
+    orientation: horizontal;
+
+    expand:     false;
+    spacing:    0;
+    children: [ icon-ms-ic1, mode-switcher, icon-ms-ic2 ];
+}
+

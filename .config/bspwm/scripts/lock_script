@@ -1,0 +1,39 @@
+#!/bin/sh
+lastbgcache="/home/benkenobi/.config/bspwm/scripts/cache/last_background"
+lastbg=$(head -n 1 $lastbgcache)
+blurbgfolder="/home/benkenobi/Pictures/BackgroundImages/arch_blurred/"
+
+image=$blurbgfolder$lastbg
+
+textcolor="cdd5f4ff"
+errorcolor="f38ba8ff"
+warningcolor="f9e2afff"
+bscolor="74c7ecff"
+invisible="00000000"
+background="000000ff"
+i3lock -i $image \
+ -F \
+ --nofork \
+ --ignore-empty-password \
+ --force-clock \
+ --time-str="%H:%M:%S" \
+ --time-pos="x+350:h-250" \
+ --date-str "%A, %d.%m.%Y" \
+ --date-pos="tx:ty+25" \
+ --bar-indicator \
+ --bar-color=$background \
+ --bar-count=1 \
+ --bar-total-width=160 \
+ --bar-base-width=3 \
+ --bar-max-height=3 \
+ --bar-pos="tx-80:ty+40" \
+ --verif-text="" \
+ --wrong-text="" \
+ --noinput-text="" \
+ --time-color=$textcolor \
+ --date-color=$textcolor \
+ --keyhl-color=$textcolor \
+ --bshl-color=$bscolor \
+ --ringwrong-color=$errorcolor \
+ --ringver-color=$warningcolor \
+ --color=$background
