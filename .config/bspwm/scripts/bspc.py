@@ -48,7 +48,6 @@ def query(query_object: Queryables,
               node_modifiers: list[NodeMods]=[],
               node_descriptor: str=None,
               query_names: bool=False) -> list[str]:
-    start = time()
     cmd = ["query", query_object.value]
 
     monitor_sel = ""
@@ -80,11 +79,6 @@ def query(query_object: Queryables,
 
     if query_names and (query_object == Queryables.MONITOR or query_object == Queryables.DESKTOP):
         cmd.append("--names")
-    #end = time()
-    #cmd_string = ""
-    #for arg in cmd:
-        #cmd_string += " " + arg
-    #print(f"finished [{cmd_string:<40}] in {end-start}s")
     return bspc(*cmd)
 
 #Monitor querys

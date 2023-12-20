@@ -28,7 +28,8 @@ def setup_dual_monitors() -> None:
     bspc.bspc("monitor", external_monitor_port, "-a", "Desktop")
     internal_desktops: list[str] = [str(number) for number in (list(range(6, 10)) + [0])]
     external_desktops: list[str] = [str(number) for number in (list(range(1, 6)))]
-    os.system(f"xrandr --output {internal_monitor_port} --mode 1920x1080 --pos 0x1080 --rotate normal --output {external_monitor_port} --primary --mode 1920x1080 --pos 0x0 --rotate normal")
+    os.system(f"xrandr --output {internal_monitor_port} --mode 1920x1080 --pos 0x540 --rotate normal --output {external_monitor_port} --primary --mode 1920x1080 --pos 1920x0 --rotate normal")
+    #os.system(f"xrandr --output {internal_monitor_port} --mode 1920x1080 --pos 0x1080 --rotate normal --output {external_monitor_port} --primary --mode 1920x1080 --pos 0x0 --rotate normal")
     for desktop_name in internal_desktops:
         bspc.move_desktop(desktop_name, internal_monitor_port)
     for desktop_name in external_desktops:

@@ -6,6 +6,7 @@ EXTERNAL_MONITOR="HDMI2"
 
 #Picom (seems to create second bspwm monitor when running with external?)
 killall picom
+sleep 1
 picom -b --no-fading-openclose
 #picom -b --no-fading-openclose --inactive-dim 0.3333
 

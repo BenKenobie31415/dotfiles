@@ -10,3 +10,5 @@ o.wrap = false
 o.title = true
 o.number = true
 o.relativenumber = true
+o.wrap = true
+

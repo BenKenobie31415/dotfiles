@@ -93,7 +93,8 @@ def handle_node_state(args: list[str]) -> None:
     #print(f"{'handle node state:':<30} {(1/60)/(time.time()-start)} frames")
 
 def handle_node_focus(args: list[str]) -> None:
-    update_focused_name()
+    ()
+    # update_focused_name()
 
 def set_darkbar_hidden(hidden: bool, main: bool) -> None:
     active_desktop_main = bspc.get_active_desktop(main_monitor)
@@ -118,10 +119,11 @@ def update_eww_bar() -> None:
         set_darkbar_hidden(not is_desktop_occupied(desktop_id), is_main_monitor(bspc.get_monitor_of_desktop(desktop_id)))
     update_desktop_visibility()
     update_bar_visibility()
-    update_focused_name()
+    # update_focused_name()
 
 def init_eww_desktops() -> None:
     desktop_names = get_desktop_names()
+    print(desktop_names)
     desktop_names.sort(key = lambda x: x)
     if (desktop_names[0] == 0):
         desktop_names.remove(0)
