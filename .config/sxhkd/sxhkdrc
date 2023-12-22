@@ -12,6 +12,9 @@ alt + s
 alt + shift + s
 	maim -s --hidecursor ~/Pictures/Screenshots/$(date +%s).png && notify-send 'Screenshot saved'
 
+alt + f
+	/home/benkenobi/.config/bspwm/scripts/toggle_fullscreen.py
+
 XF86AudioRaiseVolume
 	pactl set-sink-volume @DEFAULT_SINK@ +5%
 	
@@ -20,6 +23,9 @@ XF86AudioLowerVolume
 		
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86AudioPlay
+	playerctl play-pause
 
 {_,shift} + XF86MonBrightnessDown 
 	/home/benkenobi/.config/bspwm/scripts/ChangeBrightness decrease {5,1}
@@ -46,11 +52,9 @@ alt + shift + e
 alt + shift + c
 	bspc wm -r && notify-send "bspwm reloaded"
 
-# close and kill
-#alt + {_,shift + }q
-	#bspc node -{k,c}
-alt + shift + q
-	bspc node -c
+ close and kill
+alt + {_,shift + }q
+	bspc node -{k,c}
 
 ######### state/flags
 

@@ -68,3 +68,9 @@ class NodeMods(Enum):
     NOT_HORIZONTAL=".!horizontal"
     VERTICAL=".vertical"
     NOT_VERTICAL=".!vertical"
+
+class NodeState(Enum):
+    TILED="tiled"
+    PSEUDO_TILED="pseudo_tiled"
+    FLOATING="floating"
+    FULLSCREEN="fullscreen"

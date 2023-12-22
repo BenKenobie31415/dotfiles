@@ -1,0 +1,140 @@
+#!/bin/bash
+
+#lastSession-File format:
+#day (0-366)
+#hour (0-23)
+#bg path
+
+lastSessionFile="/home/benkenobi/Desktop/lastSession.txt"
+backgroundsFolder="/home/benkenobi/Desktop/ArchFiles/Backgrounds"
+currentDay=`date '+%j'`
+currentHour=`date '+%H'`
+currentBg="$backgroundsFolder"
+
+lastSessionFileDay=""
+lastSessionFileHour=""
+lastSessionFileBg=""
+
+function saveCurrentSession {
+    rm "$lastSessionFile"
+    touch "$lastSessionFile"
+    #echo `date '+%j'` >> "$lastSessionFile"
+    #echo `date '+%H'` >> "$lastSessionFile"
+    #echo $1 >> "$lastSessionFile"
+    #echo "saved current session"
+}
+
+function setBg {
+    #swaymsg "output * bg $1 fill"
+    feh --bg-scale $1
+    currentBg="$1"
+    saveCurrentSession "$1"
+    #echo "set background to $1"
+}
+
+function updateLastVars {
+    i=0
+    while IFS= read -r line
+    do
+        if [ $(($i==0)) -eq 1 ]
+        then
+            lastSessionFileDay="$line"
+        fi
+
+        if [ $(($i==1)) -eq 1 ]
+        then
+            lastSessionFileHour="$line"
+        fi
+
+        if [ $(($i==2)) -eq 1 ]
+        then
+            lastSessionFileBg="$line"
+        fi
+
+        i=$((i+1))
+    done < "$lastSessionFile"
+}
+
+function setRandomBg {
+    updateLastVars
+    newBg=`find $backgroundsFolder | shuf -n 1`
+    if [ "$newBg" = "$backgroundsFolder" ]
+    then
+        #echo "bg was equal bg-folder - restarting function"
+        setRandomBg
+        return
+    fi
+    if [ "$newBg" = "$lastSessionFileBg" ]
+    then
+        #echo "bg was the same as the old one - restart function"
+        setRandomBg
+        return
+    fi
+    setBg $newBg
+    #echo "set a random bg"
+}
+
+#init new session
+#restores last bg if no hour has passed since last session
+updateLastVars
+if [ "$lastSessionFileDay" = `date '+%j'` ] && [ "$lastSessionFileHour" = `date '+%H'` ]
+then
+    echo "restore old bg"
+    setBg $lastSessionFileBg
+    saveCurrentSession $lastSessionFileBg
+else
+    setRandomBg
+fi
+
+
+while [ true ]
+do
+    #new hour --> new bg
+    if [ `date '+%M'` = "00" ]
+    then
+        setRandomBg
+    fi
+
+    updateLastVars
+    #day and/or hour asyinc to file --> new bg
+    if ! [ `date '+%H'` = "$lastSessionFileHour" ] || ! [ `date '+%j'` = "$lastSessionFileDay" ]
+    then
+        setRandomBg
+    fi
+
+    updateLastVars
+    #currently wrong bg according to file --> bg from file
+    if ! [ "$lastSessionFileBg" = "$currentBg" ]
+    then
+        setBg "$lastSessionFileBg"
+        saveCurrentSession "$lastSessionFileBg"
+        #echo "loaded bg from file"
+    fi
+    sleep 60
+done
+
+
+
+#main-loop
+while [ true ]
+do
+    #changes bg if time is correct but bg does not match the last-session-bg
+    updateLastVars
+    if [ "$lastSessionFileDay" = `date '+%j'` ] && [ "$lastSessionFileHour" = `date '+%H'` ] && ! [ "$lastSessionFileBg" = "$currentBg" ]
+    then
+
+    fi
+    if [ "$lastSessionFileDay" = `date '+%j'` ] && [ "$lastSessionFileHour" = `date '+%H'` ] && [ "$lastSessionFileBg" = "$currentBg" ]
+    then
+        #echo "dont change bg"
+        saveCurrentSession $lastSessionFileBg
+    else
+        setRandomBg
+    fi
+
+    if [ $((10#$(date '+%M') == 10#"00")) -eq 1 ]
+    then
+        setRandomBg
+    fi
+    sleep 60
+done

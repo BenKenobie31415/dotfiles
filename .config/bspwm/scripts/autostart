@@ -4,15 +4,7 @@ killall picom
 picom -b --no-fading-openclose
 
 #Status bars
-killall eww
-eww daemon &
-#bar-scripts
-killall python
-#start eww-bar
-eww open bar_main &
-eww open darkbar_main &
-
-python /home/benkenobi/.config/bspwm/scripts/handle_eww_bar.py &
+polybar --reload --quiet &
 
 #python /home/benkenobi/.config/bspwm/scripts/handle_focus.py &
 

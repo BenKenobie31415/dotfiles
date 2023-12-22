@@ -241,6 +241,11 @@ def set_node_flag(node_id: str, flag: str, value: str, desktop_id: str) -> None:
         return
     bspc("node", node_id, "-g", flag + "=" + value)
 
+def set_node_state(node_id: str, state: NodeState):
+    if not node_id:
+        return
+    bspc("node", "--state", state.value)
+
 def __add_subscriber(event:str, callback, *callback_args):
     client = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
     client.connect(socket_path)
