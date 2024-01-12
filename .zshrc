@@ -1,7 +1,7 @@
 #Enable colors and change prompt:
 autoload -U colors && colors
 #PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[blue]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
-PS1="%B%{$fg[red]%}%n%{$fg[green]%}%~ %{$reset_color%}%B>%b "
+PS1="%B%{$fg[red]%}%n%{$fg[blue]%}%~ %{$reset_color%}%B>%b "
 alias ls='ls --color=auto'
 alias ..="cd .."
 alias e='exit'
@@ -10,6 +10,7 @@ alias c='clear'
 #alias deutsch='setxkbmap -layout "de"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias lf='lfrun'
+alias neofetch='fastfetch'
 
 # History in cache directory:
 HISTSIZE=10000
