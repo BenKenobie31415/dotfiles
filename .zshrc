@@ -9,6 +9,7 @@ alias c='clear'
 #alias udiskie="UDISKIE_DMENU_LAUNCHER='rofi' udiskie-dmenu -matching regex -dmenu -i -no-custom -multi-select"
 #alias deutsch='setxkbmap -layout "de"'
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lf='lfrun'
 
 # History in cache directory:
 HISTSIZE=10000
