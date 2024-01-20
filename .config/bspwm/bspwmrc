@@ -1,4 +1,5 @@
 #!/bin/sh
+# set monitor up
 INTERNAL_MONITOR="$(bspc query -M --names)"
 
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -7,17 +8,33 @@ xsetroot -cursor_name left_ptr &
 xset r rate 250 40
 setxkbmap de
 xrandr --output $INTERNAL_MONITOR --dpi 140
+bspc monitor "$INTERNAL_MONITOR" -d 1 2 3 4 5 6 7 8 9 0
 
-bspc config border_width 4
-bspc config window_gap 10
+
+# bspc config
 bspc config normal_border_color "#585b70"
 bspc config focused_border_color "#BAC2DE"
-
+bspc config active_border_color "#BAC2DE"
+bspc config automatic_scheme "alternalte"
+bspc config initial_polarity "second_child"
 bspc config split_ratio 0.5
+bspc config presel_feedback_color "#11111b"
+bspc config window_gap 10
+bspc config border_width 4
 
-# on first load setup
+
+# set lockscreen up
+xset s 600
+xss-lock -- /home/benkenobi/.config/bspwm/scripts/lock_script &
+
+
+# load last background
+python /home/benkenobi/.config/bspwm/scripts/load_background.py
+
+
+# startup programs 
 if [[ "$1" = 0 ]]; then
-	/home/benkenobi/.config/bspwm/scripts/autostart &
-	bspc monitor "$INTERNAL_MONITOR" -d 1 2 3 4 5 6 7 8 9 0
+  picom -b
+  polybar --reload --quiet &
 fi
 
