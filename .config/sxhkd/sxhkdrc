@@ -1,104 +1,105 @@
-######### Shortcuts
+######## Bspwm
 
-alt + Return
-	st
-
-alt + d
-	rofi -show drun
-
-alt + s
-	maim -s --hidecursor | xclip -selection clipboard -t image/png
-
-alt + shift + s
-	maim -s --hidecursor ~/Pictures/Screenshots/$(date +%s).png && notify-send 'Screenshot saved'
-
-alt + f
-	/home/benkenobi/.config/bspwm/scripts/toggle_fullscreen.py
-
-XF86AudioRaiseVolume
-	pactl set-sink-volume @DEFAULT_SINK@ +5%
-	
-XF86AudioLowerVolume
-	pactl set-sink-volume @DEFAULT_SINK@ -5%
-		
-XF86AudioMute
-	pactl set-sink-mute @DEFAULT_SINK@ toggle
-
-XF86AudioPlay
-	playerctl play-pause
-
-{_,shift} + XF86MonBrightnessDown 
-	/home/benkenobi/.config/bspwm/scripts/ChangeBrightness decrease {5,1}
-
-{_,shift} + XF86MonBrightnessUp 
-	/home/benkenobi/.config/bspwm/scripts/ChangeBrightness increase {5,1}
-
-alt + F12
-    /home/benkenobi/.config/bspwm/scripts/lock_script
-
-alt + F5
-    /home/benkenobi/.config/bspwm/scripts/change_background.py
-
-# make sxhkd reload its configuration files:
-alt + Escape
-	pkill -USR1 -x sxhkd && notify-send "sxhkd reloaded"
-
-#
-# bspwm
-#
-# quit/restart bspwm
+# quit bspwm
 alt + shift + e
     bspc quit 
+
+# reload bspwm
 alt + shift + c
 	bspc wm -r && notify-send "bspwm reloaded"
 
- close and kill
+# kill/close focused node
 alt + {_,shift + }q
 	bspc node -{k,c}
 
-######### state/flags
 
-# set the window state
-#alt + {t,shift + t,s,f}
-	#bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+######### Mappings
 
-# set the node flags
-alt + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+# terminal
+alt + Return
+	st
 
-######### focus/swap
+# launch-menu
+alt + d
+	rofi -show drun
 
-# focus the node in the given direction
+# lockscreen
+alt + F12
+    /home/benkenobi/.config/bspwm/scripts/lock_script
+
+# change background
+alt + F5
+    /home/benkenobi/.config/bspwm/scripts/change_background.py
+
+# reload sxhkd
+alt + Escape
+	pkill -USR1 -x sxhkd && notify-send "sxhkd reloaded"
+
+# increase volume
+{_,shift} XF86AudioRaiseVolume
+	pactl set-sink-volume @DEFAULT_SINK@ +{5,1}%
+	
+# decrease volume
+{_,shift} XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -{5,1}%
+		
+# mute audio
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# toggle player (pause/play)
+XF86AudioPlay
+	playerctl play-pause
+
+
+######### Screenshots
+
+# screenshot to clipboard
+alt + s
+	maim -s --hidecursor | xclip -selection clipboard -t image/png
+
+# screenshot to preview
+alt + ctrl + s
+  maim -s --hidecursor /tmp/note.png && sxiv -s f /tmp/note.png
+
+# screenshot to file 
+alt + shift + s
+	maim -s --hidecursor ~/Pictures/Screenshots/$(date +%s).png && notify-send 'Screenshot saved'
+
+
+######### Focus
+
+# focus adjacent node
 alt + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-alt + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the older or newer node in the focus history
-alt + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# focus or send to the given desktop
+# focus desktop
 alt + {_,shift + }{0-9}
 	bspc {desktop -f,node -d} '{0-9}'
 
 
-# preselect the direction
+######### Preselection
+
+# preselect in direction
 alt + ctrl + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 
-# preselect the ratio
+# choose preselection ratio
 alt + ctrl + {1-9}
 	bspc node -o 0.{1-9}
 
-# cancel the preselection for the focused node
+# cancel preselection
 alt + ctrl + space
 	bspc node -p cancel
 
-# cancel the preselection for the focused desktop
-alt + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+######### State and Flags
+
+# set flag for focused node
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# toggle fullscreen for focused node
+alt + f
+  /home/benkenobi/.config/bspwm/scripts/toggle_fullscreen
+
