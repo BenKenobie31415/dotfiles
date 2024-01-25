@@ -1,18 +1,18 @@
 configuration{
-    modi: "run,drun,calc";
-    icon-theme: "Oranchelo";
-    show-icons: true;
-    terminal: "st";
-    drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
-    display-drun: " 󰵆   Apps ";
-    display-run: "    Run ";
-    display-window: " 﩯   Window";
-    display-Network: "  󰤨  Network";
-    display-calc: " 󰃬  Calc";
-    sidebar-mode: true;
+  modi: "run,drun,calc";
+  icon-theme: "Oranchelo";
+  show-icons: false;
+  terminal: "st";
+  drun-display-format: "{name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: "Apps ";
+  display-run: "Run ";
+  display-window: " Window";
+  display-Network: "Network";
+  display-calc: "Calc";
+  sidebar-mode: true;
 	cycle: false;
 	kb-remove-to-eol: "";
 	kb-row-up: "Up,Alt+k";
@@ -28,6 +28,5 @@ configuration{
 	kb-mode-complete: "";
 }
 
-@theme "catppuccin-mocha"
-// @theme "fancy"
+@theme "custom_theme"
 

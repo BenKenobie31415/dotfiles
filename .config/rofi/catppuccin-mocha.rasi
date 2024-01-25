@@ -20,7 +20,7 @@ window {
     height: 720px;
     width: 1200px;
     border: 0px;
-    border-radius: 12px;
+    border-radius: 0;
     border-color: @border-col;
     background-color: @bg-col;
 }
@@ -32,7 +32,7 @@ mainbox {
 inputbar {
     children: [prompt,entry];
     background-color: @bg-col;
-    border-radius: 10px;
+    border-radius: 0;
     padding: 4px;
 }
 
@@ -40,14 +40,14 @@ prompt {
     background-color: @blue;
     padding: 12px;
     text-color: @bg-col;
-    border-radius: 6px;
+    border-radius: 0px;
     margin: 40px 0px 0px 40px;
 }
 
 entry {
     padding: 12px;
     margin: 40px 40px 0px 20px;
-    border-radius: 12px;
+    border-radius: 0px;
     text-color: @fg-col;
     background-color: @bg-col;
 }
@@ -74,7 +74,7 @@ element-icon {
 element selected {
     background-color:  @selected-col ;
     text-color: @fg-col2;
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
 mode-switcher {
@@ -98,7 +98,7 @@ message {
     background-color: @bg-col-light;
     margin: 4px;
     padding: 4px;
-    border-radius: 10px;
+    border-radius: 0px;
 }
 
 textbox {
