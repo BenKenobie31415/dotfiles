@@ -25,7 +25,7 @@ alt + d
 
 # lockscreen
 alt + F12
-    /home/benkenobi/.config/bspwm/scripts/lock_script
+    /home/benkenobi/.config/bspwm/scripts/powermenu
 
 # change background
 alt + F5
@@ -102,4 +102,13 @@ super + {t,shift + t,s,f}
 # toggle fullscreen for focused node
 alt + f
   /home/benkenobi/.config/bspwm/scripts/toggle_fullscreen
+
+######### Resize
+
+# See https://protesilaos.com/codelog/2019-09-22-bspwm-resize-sample/
+# alt + r : {h,j,r,l}
+#   bspc node -z {left,bottom,top,right} {-50,0,0,50} {0,50,-50,0}
+#
+# alt + shift + r : {h,j,k,l} 
+#   bspc node -z {left,bottom,top,right} {50,0,0,-50} {0,-50,50,0}
 
