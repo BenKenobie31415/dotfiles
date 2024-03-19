@@ -53,6 +53,7 @@ XF86AudioPlay
 XF86AudioPause
 	playerctl play-pause
 
+# play next/previous media
 XF86AudioNext
   playerctl next
 XF86AudioPrev
