@@ -50,6 +50,13 @@ XF86AudioMute
 # toggle player (pause/play)
 XF86AudioPlay
 	playerctl play-pause
+XF86AudioPause
+	playerctl play-pause
+
+XF86AudioNext
+  playerctl next
+XF86AudioPrev
+  playerctl previous
 
 
 ######### Screenshots
