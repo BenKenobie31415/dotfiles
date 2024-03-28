@@ -111,6 +111,11 @@ super + {t,shift + t,s,f}
 alt + f
   /home/benkenobi/.config/bspwm/scripts/toggle_fullscreen
 
+
+######### Change Brightness
+ctrl + alt + shift + {F10,F11}
+  ddcutil setvcp 10 {-,+} 20
+
 ######### Resize
 
 # See https://protesilaos.com/codelog/2019-09-22-bspwm-resize-sample/
