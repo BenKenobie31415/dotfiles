@@ -29,9 +29,12 @@ bindkey '^H' backward-kill-word
 
 export PATH=$PATH:/home/benkenobi/.local/bin
 export PATH=$PATH:/home/benkenobi/.config/bspwm/scripts/
+export PATH=$PATH:/home/benkenobi/Desktop
+export PATH=$PATH:/usr/bin/
 export PYTHONPATH=$PYTHONPATH:/home/benkenobi/.config/bspwm/scripts
 export _JAVA_AWT_WM_NONREPARENTING=1
 export WLR_NO_HARDWARE_CURSORS=1
+export GDK_SCALE=2
 
 
 if [ -n "$PS1" ] && [ -z "$TMUX" ]; then
