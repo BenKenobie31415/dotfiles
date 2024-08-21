@@ -829,7 +829,7 @@ xloadcols(void)
 	dc.col[defaultbg].pixel |= (unsigned char)(0xff * alpha) << 24;
 
 	/* set alpha value of selbg color */
-	dc.col[selectionbg].color.alpha = (unsigned short)(0xffff * (alpha + 1));
+	/*dc.col[selectionbg].color.alpha = (unsigned short)(0xffff * (alpha + 1));
 	dc.col[selectionbg].color.red =
 		((unsigned short)(dc.col[selectionbg].color.red * (alpha + 1))) & 0xff00;
 	dc.col[selectionbg].color.green =
@@ -837,7 +837,7 @@ xloadcols(void)
 	dc.col[selectionbg].color.blue =
 		((unsigned short)(dc.col[selectionbg].color.blue * (alpha + 1))) & 0xff00;
 	dc.col[selectionbg].pixel &= 0x00FFFFFF;
-	dc.col[selectionbg].pixel |= (unsigned char)(0xff * (alpha + 1)) << 24;
+	dc.col[selectionbg].pixel |= (unsigned char)(0xff * (alpha + 1)) << 24;*/
 	loaded = 1;
 }
 
