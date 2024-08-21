@@ -1,9 +1,0 @@
-[Unit]
-Description=hourlybackground
-
-[Timer]
-OnCalendar=*-*-* *:59:21
-Persistent=true
-
-[Install]
-WantedBy=timers.target

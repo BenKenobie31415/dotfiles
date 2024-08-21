@@ -1,7 +1,0 @@
-[Unit]
-Description=hourlybackground
-
-[Service]
-Type=simple
-ExecStart=/home/benkenobi/.local/bin/change_background.py
-
