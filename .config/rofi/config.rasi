@@ -1,25 +1,24 @@
 configuration{
-    modi: "run,drun,calc";
-    icon-theme: "Oranchelo";
-    show-icons: true;
-    terminal: "st";
-    drun-display-format: "{icon} {name}";
-    location: 0;
-    disable-history: false;
-    hide-scrollbar: true;
-    display-drun: " 󰵆   Apps ";
-    display-run: "    Run ";
-    display-window: " 﩯   Window";
-    display-Network: "  󰤨  Network";
-    display-calc: " 󰃬  Calc";
-    sidebar-mode: true;
-	font: "FiraCode Nerd Font Mono 12";
+  modi: "run,drun,calc";
+  icon-theme: "Oranchelo";
+  show-icons: false;
+  terminal: "st";
+  drun-display-format: "{name}";
+  location: 0;
+  disable-history: false;
+  hide-scrollbar: true;
+  display-drun: "apps:";
+  display-run: "run:";
+  display-window: "window:";
+  display-Network: "network:";
+  display-calc: "calc:";
+  sidebar-mode: true;
 	cycle: false;
 	kb-remove-to-eol: "";
-	kb-row-up: "Up,Alt+k";
-	kb-row-down: "Down,Alt+j";
-	kb-mode-next: "Alt+l";
-	kb-mode-previous: "Alt+h";
+	kb-row-up: "Up,Control+k";
+	kb-row-down: "Down,Control+j";
+	kb-mode-next: "Control+l";
+	kb-mode-previous: "Control+h";
 	kb-move-front: "Control+a";
 	kb-move-end: "Control+e";
 	kb-remove-to-sol: "Control+u";
@@ -30,5 +29,4 @@ configuration{
 }
 
 @theme "catppuccin-mocha"
-// @theme "fancy"
 
