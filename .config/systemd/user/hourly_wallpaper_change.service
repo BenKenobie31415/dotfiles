@@ -1,0 +1,6 @@
+[Unit]
+Description=Change wallpaper every hour
+
+[Service]
+Type=oneshot
+ExecStart=/home/benkenobi/.local/bin/change_wallpaper

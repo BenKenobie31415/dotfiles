@@ -1,0 +1,9 @@
+[Unit]
+Description=Execute script on monitor change
+
+[Service]
+ExecStart=/home/benkenobi/.config/bspwm/scripts/monitor_change.py
+
+[Install]
+WantedBy=default.target
+

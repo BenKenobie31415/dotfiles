@@ -1,0 +1,9 @@
+[Unit]
+Description=Run hourly_wallpaper_change.service every hour
+
+[Timer]
+OnCalendar=*-*-* *:59:58
+Persistent=true
+
+[Install]
+WantedBy=timers.target
