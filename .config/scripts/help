@@ -1,0 +1,78 @@
+#!/usr/bin/env python
+def main():
+    print('''\
+- change_wallpaper:
+        Changes the wallpaper to a random one from the wallpaper folder. [Alt+F5]
+
+- change_wallpaper_folder:
+        Changes the folder from which the wallpapers are chosen.
+
+- bake_blurred_wallpapers:
+        Generates the blurred versions of all images in the current wallpaper folder used in the lockscreen. Reduces cpu-load when changing to a new wallpaper that hasn't been blurred yet.
+
+- load_previous_wallpaper:
+        Loads the wallpaper that was last set with change_background or via the hourly_wallpaper_change service.
+
+- autostart:
+        Script that starts everything needed within userspace.
+
+- help:
+        This
+
+
+- Shortcuts:
+        ###### Bspwm
+        Quit bspwm:                             [Alt + Shift + e]
+        Reload bspwm:                           [Alt + Shift + c]
+        Reload keybinds:                        [Alt + Esc]
+
+        Close focused node:                     [Alt + Shift + q]
+        Kill focused node:                      [Alt + q]
+
+        ###### Misc
+        Terminal:                               [Alt + Return]
+
+        Launch menu:                            [Alt + d]
+
+        Lockscreen:                             [Alt + F12]
+
+        Whoami:                                 [Alt + F11]
+
+        Change wallpaper:                       [Alt + F5]
+
+
+        ###### Screenshots
+        Screenshot to clipboard:                [Alt + s]
+
+        Screenshot to preview:                  [Alt + Ctrl + s]
+
+        Screenshot to file:                     [Alt + Shift + s]
+
+
+        ###### Focus
+        Focus adjacent node:                    [Alt + (h,j,k,l)]
+        
+        Swap focused node:                      [Alt + Shift + (h,j,k,l)]
+
+        Focus desktop:                          [Alt + (0-9)]
+
+
+        ###### Preselection
+        Start preselection:                     [Alt + Ctrl + (h,j,k,l)]
+
+        Change preselection ratio:              [Alt + Ctrl + (0-9)]
+
+        Cancel preselection:                    [Alt + Ctrl + Space]
+        
+
+        ###### Node States and Flags
+        Focused node to tiled:                  [Super + t]
+        Focused node to pseudo-tiled:           [Super + Shift + t]
+        Focused node to floating:               [Super + s]
+        Focused node to fullscreen:             [Super + f]
+
+        Toggle Focused node fullscreen/tiled:   [Alt + f]''')
+
+
+if __name__ == '__main__':
+    main()

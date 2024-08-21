@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+import sys
+import os
+from storagectl_lib.entry import Entry
+
+_VALID_CHARACTERS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_/[] .'
+_BASE_PATH = os.path.expanduser('~/.local/mnt/')
+
+def main():
+    if len(sys.argv) != 2:
+        usage()
+        sys.exit(1)
+    if sys.argv[1] == 'mount':
+        mount()
+        sys.exit(0)
+    if sys.argv[1] == 'unmount' or sys.argv[1] == 'umount':
+        unmount()
+        sys.exit(0)
+    if sys.argv[1] == 'info':
+        info()
+        sys.exit(0)
+    usage()
+    sys.exit(1)
+
+
+def mount() -> None:
+    entries = get_storage_entries()
+    available_partitions = [entry for entry in entries if entry.is_usb() and entry.is_partition() and not entry.is_mounted()]
+    if len(available_partitions) == 0:
+        print('No partitions to mount')
+        sys.exit(0)
+    chosen_entry = _get_entry_choice(available_partitions)
+    mount_partition(chosen_entry)
+
+
+def unmount() -> None:
+    entries = get_storage_entries()
+    available_partitions = [entry for entry in entries if entry.is_usb() and entry.is_partition() and entry.is_mounted()]
+    if len(available_partitions) == 0:
+        print('No partitions to unmount')
+        sys.exit(0)
+    chosen_entry = _get_entry_choice(available_partitions)
+    unmount_partition(chosen_entry)
+
+
+def _get_entry_choice(available_partitions: list[Entry]) -> Entry:
+    for i in range(len(available_partitions)):
+        current_partition = available_partitions[i]
+        print(f'[{i + 1}] {current_partition.name} {current_partition.size}')
+    user_input = input('Enter the partition to mount or "exit": ')
+    if user_input == 'exit':
+        sys.exit(0)
+    if user_input.isdigit() and 0 < int(user_input) <= len(available_partitions):
+        return available_partitions[int(user_input) - 1]
+    if user_input in [partition.name for partition in available_partitions]:
+        return user_input
+    print('Invalid partition')
+    sys.exit(1)
+
+
+def info():
+    print(os.popen('lsblk').read())
+
+
+def mount_partition(entry: Entry) -> None:
+    if entry.name not in [storage_entry.name for storage_entry in get_storage_entries()]:
+        print(f'{entry.name} is not/no longer connected')
+        sys.exit(1)
+    if not entry.is_partition():
+        print(f'{entry.name} is not a partition')
+        sys.exit(1)
+
+    print(f'Mounting {entry.name}')
+    gid = os.getgid()
+    uid = os.getuid()
+    mount_path = f'{_BASE_PATH}{entry.name}'
+    if not os.path.exists(mount_path):
+        os.system(f'sudo mkdir {mount_path}')
+    os.system(f'sudo mount -o uid={uid},gid={gid} /dev/{entry.name} {mount_path}')
+
+
+def unmount_partition(entry: Entry) -> None:
+    if entry.name not in [storage_entry.name for storage_entry in get_storage_entries()]:
+        print(f'{entry.name} is not/no longer connected')
+        sys.exit(1)
+    if not entry.is_partition():
+        print(f'{entry.name} is not a partition')
+        sys.exit(1)
+
+    print(f'Unmounting {entry.name}')
+    mount_point = entry.mountpoint
+    os.system(f'sudo umount {mount_point}')
+    if os.path.exists(mount_point):
+        os.system(f'sudo rmdir {mount_point}')
+
+
+def get_storage_entries() -> list[Entry]:
+    lsblk_output = os.popen('lsblk -o NAME,SIZE,TYPE,MOUNTPOINT').read().split('\n')[1:-1]
+    tokenized_output = [''.join(filter(lambda x: x in _VALID_CHARACTERS, line)).split() for line in lsblk_output]
+    for token_list in tokenized_output:
+        if len(token_list) == 3:
+            token_list.append('')
+    return [Entry(token_list[0], token_list[1], token_list[2], token_list[3]) for token_list in tokenized_output]
+    #return [Entry(row[0], row[1], row[2], row[3]) for row in [line_list + [''] if len(line_list) == 3 else line_list for line_list in [''.join(filter(lambda x: x in _VALID_CHARACTERS, line)).split() for line in lsblk_output]]]
+
+
+def usage() -> None:
+    print('Usage: storagectl <command>')
+    print('Commands:')
+    print('  mount - Mount a partition')
+    print('  unmount - Unmount a partition')
+    print('  info - Show storage info')
+
+
+if __name__ == '__main__':
+    main()

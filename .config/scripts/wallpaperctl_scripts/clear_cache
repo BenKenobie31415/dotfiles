@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+from wallpaper_util import blurred_images_folder
+
+import os
+import sys
+
+def clear_cache() -> None:
+    print('Clearing cache...')
+    for file in os.listdir(blurred_images_folder):
+        print(f'Removing {file}')
+        os.remove(os.path.join(blurred_images_folder, file))
+
+def main():
+    if len(sys.argv) > 1:
+        print('Usage: clear_cache')
+        sys.exit(1)
+
+    clear_cache()
+
+if __name__ == '__main__':
+    main()

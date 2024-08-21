@@ -1,0 +1,7 @@
+#!/bin/bash
+maxValue=$(brightnessctl m)
+currValue=$(brightnessctl g)
+currValue=$((5+$currValue))
+currValue=$((100*$currValue))
+percentage=$((currValue/maxValue))
+echo $percentage

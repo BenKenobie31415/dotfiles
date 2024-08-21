@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+from wallpaper_util import set_wallpaper, get_last_wallpaper, get_wallpaper_source
+import sys
+
+def load_last_wallpaper():
+    set_wallpaper(get_last_wallpaper())
+
+def main():
+    if len(sys.argv) > 1:
+        print('Usage: load')
+        sys.exit(1)
+    load_last_wallpaper()
+
+if __name__ == '__main__':
+    main()

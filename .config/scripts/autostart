@@ -1,0 +1,21 @@
+#!/bin/sh
+INTERNAL_MONITOR="eDP1"
+EXTERNAL_MONITOR="DP2-1"
+
+#/home/benkenobi/.config/bspwm/scripts/update_monitors.py
+
+#Picom (seems to create second bspwm monitor when running with external?)
+killall picom
+sleep 1
+picom -b --no-fading-openclose &
+ibus-daemon &
+polybar --reload --quiet &
+#picom -b --no-fading-openclose --inactive-dim 0.3333
+
+#Background
+python ~/.config/scripts/wallpaperctl last
+
+#lock-screen
+killall xss-lock
+xset s 600
+xss-lock -- ~/.config/scripts/lock_script &

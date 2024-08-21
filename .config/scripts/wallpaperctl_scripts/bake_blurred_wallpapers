@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+import os
+import wallpaper_util as util
+
+def main():
+    wallpaper_source = util.get_wallpaper_source()
+    if not util.is_valid_wallpaper_source(wallpaper_source):
+        print("Invalid wallpaper source")
+        return
+    if util.is_wallpaper(wallpaper_source):
+        util.get_blurred_wallpaper(wallpaper_source)
+        return
+    for original_image_path in [f'{wallpaper_source}{image_name}' for image_name in util.get_image_files(wallpaper_source)]:
+        util.get_blurred_wallpaper(original_image_path)
+
+
+if __name__ == '__main__':
+    main()
