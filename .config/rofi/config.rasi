@@ -7,11 +7,11 @@ configuration{
   location: 0;
   disable-history: false;
   hide-scrollbar: true;
-  display-drun: "apps:";
-  display-run: "run:";
-  display-window: "window:";
-  display-Network: "network:";
-  display-calc: "calc:";
+  display-drun: ":apps";
+  display-run: ":run";
+  display-window: ":window";
+  display-Network: ":networc";
+  display-calc: ":calc";
   sidebar-mode: true;
 	cycle: false;
 	kb-remove-to-eol: "";
