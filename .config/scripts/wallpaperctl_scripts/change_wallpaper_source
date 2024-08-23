@@ -3,6 +3,7 @@ import sys
 import os
 import wallpaper_util as util
 
+
 def main():
     if len(sys.argv) != 2:
         print('Usage: change [image_file_path|folder_path]')
@@ -23,9 +24,11 @@ def main():
     os.system(f'{util.scripts_folder}bake_blurred_wallpapers')
     os.system(f'{util.scripts_folder}change_wallpaper')
 
+
 def write_source_to_cache(folder_path: str) -> None:
     with open(util.wallpaper_source_cache, 'w') as file:
         file.write(folder_path)
+
 
 def delete_blurred_images_cache():
     if not os.path.exists(util.blurred_images_folder):

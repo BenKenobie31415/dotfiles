@@ -5,25 +5,31 @@ import subprocess
 
 _DEFAULT_SCRIPTS_DIR = os.path.expanduser("~/.config/scripts/wallpaperctl_scripts/")
 
+
 def change_wallpaper_source(args: list[str]) -> None:
     script_path = os.path.join(_DEFAULT_SCRIPTS_DIR, 'change_wallpaper_source')
-    subprocess.run([script_path] + args)
+    _ = subprocess.run([script_path] + args)
+
 
 def next_wallpaper(args: list[str]) -> None:
     script_path = os.path.join(_DEFAULT_SCRIPTS_DIR, 'change_wallpaper')
-    subprocess.run([script_path] + args)
+    _ = subprocess.run([script_path] + args)
+
 
 def load_last_wallpaper(args: list[str]) -> None:
     script_path = os.path.join(_DEFAULT_SCRIPTS_DIR, 'load_last_wallpaper')
-    subprocess.run([script_path] + args)
+    _ = subprocess.run([script_path] + args)
+
 
 def get_wallpaper_source(args: list[str]) -> None:
     script_path = os.path.join(_DEFAULT_SCRIPTS_DIR, 'get_wallpaper_source')
-    subprocess.run([script_path] + args)
+    _ = subprocess.run([script_path] + args)
+
 
 def clear_cache(args: list[str]) -> None:
     script_path = os.path.join(_DEFAULT_SCRIPTS_DIR, 'clear_cache')
-    subprocess.run([script_path] + args)
+    _ = subprocess.run([script_path] + args)
+
 
 def usage() -> None:
     print('Usage: wallpaperctl <command> [args]')
@@ -33,6 +39,7 @@ def usage() -> None:
     print('  last - Load the last wallpaper')
     print('  get - Get current wallpaper source')
     print('  clear - Clear the blurred images cache')
+
 
 def main():
     if len(sys.argv) <= 1:
@@ -55,6 +62,7 @@ def main():
         print(f'Unknown command: {command}')
         usage()
         sys.exit(1)
+
 
 if __name__ == '__main__':
     main()
