@@ -42,3 +42,4 @@ fi
 source ~/.zsh/catppuccin-zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-vi-mode/zsh-vi-mode.zsh
