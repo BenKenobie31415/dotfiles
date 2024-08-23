@@ -31,9 +31,6 @@ alt + d
 alt + F12
 	~/.config/scripts/lock_script
 
-alt + F11
-    notify-send "$(whoami)"
-
 # change background
 alt + F5
 	~/.config/scripts/wallpaperctl next
@@ -74,16 +71,20 @@ XF86AudioPrev
 
 # screenshot to clipboard
 alt + s
-	maim -s --hidecursor | xclip -selection clipboard -t image/png && notify-send 'Screenshot copied'
+	maim -s --hidecursor | xclip -selection clipboard -t image/png && notify-send 'screenshot copied'
 
 # screenshot to preview
 alt + ctrl + s
-  maim -s --hidecursor /tmp/note.png && imv /tmp/note.png
+  maim -s --hidecursor /tmp/note.png && imv /tmp/note.png -u nearest_neighbour
 
 # screenshot to file 
 alt + shift + s
-	maim -s --hidecursor ~/Pictures/Screenshots/$(date +%s).png && notify-send 'Screenshot saved'
+	maim -s --hidecursor ~/Pictures/Screenshots/$(date +%s).png && notify-send 'screenshot saved'
 
+
+######### Color Picker
+alt + c
+	~/.config/scripts/copy-color-hex && notify-send "color copied"
 
 ######### Focus
 
