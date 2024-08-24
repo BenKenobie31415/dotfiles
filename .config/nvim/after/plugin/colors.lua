@@ -1,3 +1,13 @@
+-- function SetColors(color)
+-- 	color = color or "catppuccin-mocha"
+-- 	vim.cmd.colorscheme(color)
+--
+-- 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+-- 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--
+-- end
+--
+-- SetColors()
 require("catppuccin").setup({
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
@@ -5,7 +15,7 @@ require("catppuccin").setup({
         dark = "mocha",
     },
     transparent_background = true,
-    show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+    show_end_of_buffer = true, -- show the '~' characters after the end of buffers
     term_colors = true,
     dim_inactive = {
         enabled = false,
