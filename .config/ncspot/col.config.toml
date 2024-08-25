@@ -1,0 +1,42 @@
+use_nerdfont = true
+flip_status_indicators = true
+volnorm = true
+gapless = false
+repeat = "playlist"
+cover_max_scale = 4
+library_tabs = ["playlists", "tracks", "albums", "artists"]
+statusbar_format = "%title - %artists"
+
+[track_format]
+left = "%title"
+center = "%album (%artists)"
+right = "%saved %duration"
+
+[keybindings]
+n = "next"
+p = "previous"
+Space = "playpause"
+"Shift+Esc" = "quit"
+"Shift+s" = "focus search"
+Esc = "back"
+"Shift+l" = "focus library"
+"Shift+c" = "focus cover"
+"Shift+q" = "focus queue"
+Left = "noop"
+Right = "noop"
+Up = "noop"
+Down = "noop"
+F8 = "noop"
+
+[theme]
+primary = "[text]"
+secondary = "[text_darker]"
+title = "[light_blue]"
+playing = "[light_blue]"
+playing_selected = "[background_0]"
+error = "[red]"
+statusbar = "[light_blue]"
+statusbar_progress = "[light_blue]"
+cmdline = "[light_blue]"
+highlight = "[background_0]"
+highlight_bg = "[light_blue]"
