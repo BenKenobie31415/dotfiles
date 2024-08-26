@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+import os
+import sys
+from entry import Entry
+
+configs: list[Entry] = [
+    Entry('~/.config/polybar/config.ini'),
+    Entry('~/.config/bspwm/bspwmrc', ['bspc wm -r']),
+    Entry('~/.config/dunst/dunstrc', ['killall dunst']),
+    Entry('~/.config/ncspot/config.toml'),
+    Entry('~/.config/rofi/custom_theme.rasi'),
+    Entry('~/.config/tmux/tmux.conf', [f'tmux source {os.path.expanduser('~/.config/tmux/tmux.conf')}']),
+    Entry('~/st/config.h', [f'sudo make install --directory={os.path.expanduser('~/st/')}']),
+]
+
+#appends librewolf config file
+librewolf_base_directory = os.path.expanduser('~/.librewolf/')
+librewolf_subdirectories = os.listdir(librewolf_base_directory)
+for directory in librewolf_subdirectories:
+    if '.default-default' in directory:
+        chrome_path = f'{librewolf_base_directory}{directory}/chrome/'
+        if not os.path.isdir(chrome_path):
+            continue
+        configs.append(Entry(f'{chrome_path}userChrome.css'))
+
+
+def main():
+    if len(sys.argv) != 2:
+        usage()
+        sys.exit(1)
+    theme_id = sys.argv[1]
+    queued_commands: list[str] = []
+    for config in configs:
+        print(os.popen(f'~/.config/scripts/color_patcher_scripts/patch-config-theme {config.path} {theme_id}').read().rstrip('\n'))
+        queued_commands += config.cmds
+    
+    for command in queued_commands:
+        if 'sudo' in command:
+            _ = os.system(command)
+        else:
+            _ = os.popen(command)
+    _ = os.popen('notify-send "system theme applied"')       
+
+
+def usage():
+    print('Usage: patch-config-theme [theme]')
+
+if __name__ == '__main__':
+    main()

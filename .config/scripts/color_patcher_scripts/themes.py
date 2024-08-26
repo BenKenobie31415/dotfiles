@@ -60,6 +60,36 @@ themes: dict[str, dict[Color, str]] = {
         Color.BACKGROUND_2 :'#1E1E2E',
         Color.BACKGROUND_1 :'#181825',
         Color.BACKGROUND_0 :'#11111B',
-    }
+    },
+    "debug" : {
+        Color.LIGHT_RED :   '#FF0000',
+        Color.YELLOW :      '#FF6571',
+        Color.LIGHT_GREEN : '#00FF00',
+        Color.LIGHT_TEAL :  '#00FFFF',
+        Color.LIGHT_BLUE :  '#0000FF',
+        Color.LIGHT_PURPLE :'#7700FF',
+
+        Color.RED :         '#770000',
+        Color.ORANGE :      '#770077',
+        Color.GREEN :       '#007700',
+        Color.TEAL :        '#007777',
+        Color.BLUE :        '#000077',
+        Color.PURPLE :      '#770077',
+        Color.PINK :        '#FF00FF',
+
+        Color.TEXT :        '#FFFFFF',
+        Color.TEXT_DARKER : '#777777',
+        Color.TEXT_DARK :   '#000000',
+
+        Color.BACKGROUND_8 :'#FFFFFF',
+        Color.BACKGROUND_7 :'#EEEEEE',
+        Color.BACKGROUND_6 :'#CCCCCC',
+        Color.BACKGROUND_5 :'#AAAAAA',
+        Color.BACKGROUND_4 :'#888888',
+        Color.BACKGROUND_3 :'#666666',
+        Color.BACKGROUND_2 :'#444444',
+        Color.BACKGROUND_1 :'#222222',
+        Color.BACKGROUND_0 :'#000000',
+    },
 }
 

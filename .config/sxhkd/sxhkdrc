@@ -22,6 +22,8 @@ alt + Escape
 # terminal
 alt + Return
 	st
+alt + control + Return
+	st_
 
 # launch-menu
 alt + d
