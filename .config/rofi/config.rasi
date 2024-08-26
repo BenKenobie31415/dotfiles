@@ -28,5 +28,5 @@ configuration{
 	kb-mode-complete: "";
 }
 
-@theme "catppuccin-mocha"
+@theme "custom_theme"
 

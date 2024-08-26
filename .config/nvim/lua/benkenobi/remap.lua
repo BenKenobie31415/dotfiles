@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.g.mapleader = " "
 vim.keymap.set("n", "K", "<Nop>")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
@@ -13,3 +13,5 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
+
+vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")

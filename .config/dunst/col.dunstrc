@@ -266,18 +266,18 @@
 
 
 [global]
-frame_color = "#67C1FF"
+frame_color = "[light_blue]"
 separator_color= frame
 
 [urgency_low]
-background = "#061021"
-foreground = "#DFEFF5"
+background = "[background_1]"
+foreground = "[text]"
 
 [urgency_normal]
-background = "#061021"
-foreground = "#DFEFF5"
+background = "[background_1]"
+foreground = "[text]"
 
 [urgency_critical]
-background = "#061021"
-foreground = "#DFEFF5"
-frame_color = "#FF3571"
+background = "[background_1]"
+foreground = "[text]"
+frame_color = "[red]"
