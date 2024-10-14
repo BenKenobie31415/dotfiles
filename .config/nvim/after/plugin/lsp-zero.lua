@@ -17,6 +17,7 @@ require('mason-lspconfig').setup({
             require('lspconfig')['basedpyright'].setup({})
             require('lspconfig')['cssls'].setup({})
             require('lspconfig')['rust_analyzer'].setup({})
+            require('lspconfig')['marksman'].setup({})
         end,
     },
 })

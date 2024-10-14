@@ -86,6 +86,11 @@ local plugins = {
     {"hrsh7th/cmp-path"},
     {"hrsh7th/cmp-buffer"},
     {"hrsh7th/vim-vsnip"},
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" }
+    },
 }
 
 
