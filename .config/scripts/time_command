@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import time
+import subprocess
+import statistics
+import sys
+
+def measure_execution_time(command, runs=100):
+    execution_times = []
+
+    for _ in range(runs):
+        start_time = time.perf_counter()
+        subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        end_time = time.perf_counter()
+        
+        execution_times.append((end_time - start_time) * 1000)  # Convert to milliseconds
+
+    avg_time = statistics.mean(execution_times)
+    stdev_time = statistics.stdev(execution_times)
+    return avg_time, stdev_time
+
+def usage():
+    print("Usage: time_command <cmd> <n> [internal_n]")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 3 and len(sys.argv) != 4:
+        usage()
+        sys.exit(1)
+    command = sys.argv[1]
+    n = int(sys.argv[2])
+    divisor = 1
+    if len(sys.argv) == 4:
+        divisor = int(sys.argv[3])
+    avg_time, stdev_time = measure_execution_time(command, runs=n)
+    avg_time = avg_time/divisor
+    stdev_time = stdev_time/divisor
+    
+    print(f"Average execution time: {avg_time:.4f} ms")
+    print(f"Standard deviation: {stdev_time:.4f} ms")
+    print()
+    print(f"Expected to run a maximum of {(1/60)/(avg_time/1000):.4f} times per frame")
+

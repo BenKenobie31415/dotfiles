@@ -29,3 +29,5 @@ class Color(Enum):
     BACKGROUND_2 =      22
     BACKGROUND_1 =      23
     BACKGROUND_0 =      24
+
+    ACCENT =            25

@@ -10,7 +10,9 @@ themes: dict[str, dict[Color, str]] = {
         Color.LIGHT_PURPLE :'#8391F7',
 
         Color.RED :         '#FF3571',
-        Color.ORANGE :      '#FF6571',
+        # Color.ORANGE :      '#FF6571',
+        # Color.ORANGE :      '#F6791E',
+        Color.ORANGE :      '#F08B42',
         Color.GREEN :       '#63C12A',
         Color.TEAL :        '#82F0F2',
         Color.BLUE :        '#0F81D5',
@@ -30,6 +32,8 @@ themes: dict[str, dict[Color, str]] = {
         Color.BACKGROUND_2 :'#0B162B',
         Color.BACKGROUND_1 :'#061021',
         Color.BACKGROUND_0 :'#030A17',
+
+        Color.ACCENT :      '#67C1FF',
     },
     "catppuccin-mocha": {
         Color.LIGHT_RED :   '#F5E0DC',
@@ -60,6 +64,8 @@ themes: dict[str, dict[Color, str]] = {
         Color.BACKGROUND_2 :'#1E1E2E',
         Color.BACKGROUND_1 :'#181825',
         Color.BACKGROUND_0 :'#11111B',
+
+        Color.ACCENT :      '#89DCEB',
     },
     "debug" : {
         Color.LIGHT_RED :   '#FF0000',
@@ -90,6 +96,8 @@ themes: dict[str, dict[Color, str]] = {
         Color.BACKGROUND_2 :'#444444',
         Color.BACKGROUND_1 :'#222222',
         Color.BACKGROUND_0 :'#000000',
+
+        Color.ACCENT :      '#ff0000',
     },
 }
 

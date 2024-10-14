@@ -11,6 +11,7 @@ configs: list[Entry] = [
     Entry('~/.config/rofi/custom_theme.rasi'),
     Entry('~/.config/tmux/tmux.conf', [f'tmux source {os.path.expanduser('~/.config/tmux/tmux.conf')}']),
     Entry('~/st/config.h', [f'sudo make install --directory={os.path.expanduser('~/st/')}']),
+    Entry('~/.config/nvim/lua/benkenobi/colors.lua')
 ]
 
 #appends librewolf config file
